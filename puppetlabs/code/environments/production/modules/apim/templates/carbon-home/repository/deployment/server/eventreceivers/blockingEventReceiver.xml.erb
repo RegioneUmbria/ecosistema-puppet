@@ -1,0 +1,12 @@
+<eventReceiver xmlns="http://wso2.org/carbon/eventreceiver" name="blockingEventReceiver" statistics="enable" trace="enable">
+   <from eventAdapterType="jms">
+      <property name="transport.jms.DestinationType">topic</property>
+      <property name="transport.jms.Destination">blockingData</property>
+      <property name="java.naming.factory.initial">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</property>
+      <property name="java.naming.provider.url">repository/conf/jndi1.properties</property>
+      <property name="transport.jms.SubscriptionDurable">false</property>
+      <property name="transport.jms.ConnectionFactoryJNDIName">TopicConnectionFactory</property>
+   </from>
+   <mapping customMapping="disable" type="map" />
+   <to streamName="org.wso2.blocking.condition.stream" version="1.0.0" />
+</eventReceiver>

@@ -1,0 +1,60 @@
+publiccodeYmlVersion: "0.2"
+
+name: Ecosistema Digitale - API Management 
+url: "https://github.com/RegioneUmbria/SISO"
+softwareVersion: "1.0"
+releaseDate: "2019-10-01"
+logo: https://raw.githubusercontent.com/RegioneUmbria/ecosistema-puppet/master/images/ecosistema.png
+platforms:
+  - web
+
+categories:
+  - application-development
+  - it-development  
+  - data-collection
+
+usedBy:
+  - Regione Umbria
+    
+
+developmentStatus: stable
+
+softwareType: "configurationFiles"
+
+description:
+  it:   
+    shortDescription: >
+         File Puppet per l'installazione e configurazione di una piattaforma per la gestione delle API (WSO2)
+    genericName: Ecosistema digitale - Piattforma gestione API (WSO2)      
+    longDescription: >
+         L'Ecosistema Digitale dell'Umbria è una piattaforma che consente di esporre i servizi dei sistemi informativi regionali
+         tramite API. 
+         La parte tecnologica dell'Ecosistema utilizza la piattaforma WSO2 ed in particolare i componenti: API Manager, Enterprise Integrator,
+         Identity Server e Stream Processor.
+         Il repository contiene i file di Puppet per l'installazione e la configurazione dell'API Manager e dell'IS
+         secondo il modello architetturale descritto nel repository. L'utilizzo di Puppet e dei file del repository permette, agevolmente,
+         di replicare/adattare l'architettura proposta.         
+    features:
+       - Installazione e configurazione di WSO2 API Manager
+       - Installazione e configurazione di WSO2 Identiy Server
+       - Possibilità di personalizzare l'achitettura utilizzando i file di configurazione 
+       - Facilità di installazione
+       - Architettura scalabile
+legal:
+  license: 	EUPL-1.2
+  repoOwner: Regione Umbria
+
+maintenance:
+  type: "internal"
+
+  contacts:
+    - name: ecosistema@umbriadigitale.it
+
+localisation:
+  localisationReady: no
+  availableLanguages:
+    - it
+
+it:
+    riuso:
+        codiceIPA: r_umbria 

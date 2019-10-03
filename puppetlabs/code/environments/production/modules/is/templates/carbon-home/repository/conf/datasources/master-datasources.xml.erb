@@ -1,0 +1,77 @@
+<datasources-configuration xmlns:svns="http://org.wso2.securevault/configuration">
+  
+    <providers>
+        <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
+    </providers>
+  
+    <datasources>
+      
+        <datasource>
+            <name>WSO2_CARBON_DB</name>
+            <description>The datasource used for registry and user manager</description>
+            <jndiConfig>
+                <name>jdbc/WSO2CarbonDB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_carbon_url %></url>
+                    <username><%= @datasource_carbon_username %></username>
+                    <password><%= @datasource_carbon_password %></password>
+                    <driverClassName><%= @datasource_carbon_driver %></driverClassName>
+                    <maxActive><%= @datasource_carbon_max_active %></maxActive>
+                    <maxWait><%= @datasource_carbon_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_carbon_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_carbon_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_carbon_validation_interval %></validationInterval>
+                    <defaultAutoCommit><%= @datasource_carbon_default_auto_commit %></defaultAutoCommit>
+                </configuration>
+            </definition>
+        </datasource>
+
+        <datasource>
+            <name><%= @datasource_user_db_name %></name>
+            <description>The datasource used for user database</description>
+            <jndiConfig>
+                <name><%= @datasource_user_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_user_db_url %></url>
+                    <username><%= @datasource_user_db_username %></username>
+                    <password><%= @datasource_user_db_password %></password>
+                    <defaultAutoCommit><%= @datasource_user_db_default_auto_commit %></defaultAutoCommit>
+                    <driverClassName><%= @datasource_user_db_driver %></driverClassName>
+                    <maxActive><%= @datasource_common_max_active %></maxActive>
+                    <maxWait><%= @datasource_common_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_common_postgres_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_user_db_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_common_validation_interval %></validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+			
+		<datasource>
+            <name><%= @datasource_identity_db_name %></name>
+            <description>The datasource used for registry, user management and identity</description>
+            <jndiConfig>
+                <name><%= @datasource_identity_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_identity_db_url %></url>
+                    <username><%= @datasource_identity_db_username %></username>
+                    <password><%= @datasource_identity_db_password %></password>
+                    <defaultAutoCommit><%= @datasource_common_postgres_default_auto_commit %></defaultAutoCommit>
+                    <driverClassName><%= @datasource_identity_db_driver %></driverClassName>
+                    <maxActive><%= @datasource_common_max_active %></maxActive>
+                    <maxWait><%= @datasource_common_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_common_postgres_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_identity_db_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_common_validation_interval %></validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+
+    </datasources>
+
+</datasources-configuration>

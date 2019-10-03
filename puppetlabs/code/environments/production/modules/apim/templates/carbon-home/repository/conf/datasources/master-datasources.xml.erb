@@ -1,0 +1,165 @@
+<datasources-configuration xmlns:svns="http://org.wso2.securevault/configuration">
+
+    <providers>
+        <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
+    </providers>
+
+    <datasources>
+
+        <datasource>
+            <name>WSO2_CARBON_DB</name>
+            <description>The datasource used for registry and user manager</description>
+            <jndiConfig>
+                <name>jdbc/WSO2CarbonDB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_carbon_url %></url>
+                    <username><%= @datasource_carbon_username %></username>
+                    <password><%= @datasource_carbon_password %></password>
+                    <driverClassName><%= @datasource_carbon_driver %></driverClassName>
+                    <maxActive><%= @datasource_carbon_max_active %></maxActive>
+                    <maxWait><%= @datasource_carbon_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_carbon_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_carbon_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_carbon_validation_interval %></validationInterval>
+                    <defaultAutoCommit><%= @datasource_carbon_default_auto_commit %></defaultAutoCommit>
+                </configuration>
+            </definition>
+        </datasource>
+		
+		<datasource>
+            <name><%= @datasource_am_db_name %></name>
+            <description>The datasource used for user database</description>
+            <jndiConfig>
+                <name><%= @datasource_am_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_am_db_url %></url>
+                    <username><%= @datasource_am_db_username %></username>
+                    <password><%= @datasource_am_db_password %></password>
+                    <defaultAutoCommit><%= @datasource_common_postgres_default_auto_commit %></defaultAutoCommit>
+                    <driverClassName><%= @datasource_am_db_driver %></driverClassName>
+                    <maxActive><%= @datasource_common_max_active %></maxActive>
+                    <maxWait><%= @datasource_common_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_common_postgres_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_common_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_common_validation_interval %></validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+
+        <datasource>
+            <name><%= @datasource_user_db_name %></name>
+            <description>The datasource used for user database</description>
+            <jndiConfig>
+                <name><%= @datasource_user_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_user_db_url %></url>
+                    <username><%= @datasource_user_db_username %></username>
+                    <password><%= @datasource_user_db_password %></password>
+                    <defaultAutoCommit><%= @datasource_user_db_default_auto_commit %></defaultAutoCommit>
+                    <driverClassName><%= @datasource_user_db_driver %></driverClassName>
+                    <maxActive><%= @datasource_common_max_active %></maxActive>
+                    <maxWait><%= @datasource_common_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_common_postgres_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_user_db_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_common_validation_interval %></validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+		
+		<datasource>
+            <name><%= @datasource_config_db_name %></name>
+            <description>The datasource used for config registry database</description>
+            <jndiConfig>
+                <name><%= @datasource_config_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_config_db_url %></url>
+                    <username><%= @datasource_user_db_username %></username>
+                    <password><%= @datasource_user_db_password %></password>
+                    <defaultAutoCommit><%= @datasource_common_postgres_default_auto_commit %></defaultAutoCommit>
+                    <driverClassName><%= @datasource_user_db_driver %></driverClassName>
+                    <maxActive><%= @datasource_common_max_active %></maxActive>
+                    <maxWait><%= @datasource_common_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_common_postgres_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_config_db_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_common_validation_interval %></validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+		
+		<datasource>
+            <name><%= @datasource_gov_db_name %></name>
+            <description>The datasource used for governance registry database</description>
+            <jndiConfig>
+                <name><%= @datasource_gov_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_gov_db_url %></url>
+                    <username><%= @datasource_gov_db_username %></username>
+                    <password><%= @datasource_gov_db_password %></password>
+                    <defaultAutoCommit><%= @datasource_common_postgres_default_auto_commit %></defaultAutoCommit>
+                    <driverClassName><%= @datasource_gov_db_driver %></driverClassName>
+                    <maxActive><%= @datasource_common_max_active %></maxActive>
+                    <maxWait><%= @datasource_common_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_common_postgres_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_gov_db_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_common_validation_interval %></validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+
+        <datasource>
+            <name><%= @datasource_stat_db_name %></name>
+            <description>The datasource used for getting statistics to API Manager</description>
+            <jndiConfig>
+                <name><%= @datasource_stat_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_stat_db_url %></url>
+                    <username><%= @datasource_stat_db_username %></username>
+                    <password><%= @datasource_stat_db_password %></password>
+                    <defaultAutoCommit>true</defaultAutoCommit>
+                    <driverClassName><%= @datasource_stat_db_driver %></driverClassName>
+                    <maxActive>50</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery>SELECT 1</validationQuery>
+                    <validationInterval>30000</validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+
+        <datasource>
+            <name><%= @datasource_mb_db_name %></name>
+            <description>The datasource used for message broker database</description>
+            <jndiConfig>
+                <name><%= @datasource_mb_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_mb_store_db_url %></url>
+                    <username><%= @datasource_mb_store_db_username %></username>
+                    <password><%= @datasource_mb_store_db_password %></password>
+                    <driverClassName><%= @datasource_mb_store_db_driver %></driverClassName>
+                    <maxActive>50</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery>SELECT 1</validationQuery>
+                    <validationInterval>30000</validationInterval>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+                </configuration>
+            </definition>
+        </datasource>
+
+    </datasources>
+
+</datasources-configuration>

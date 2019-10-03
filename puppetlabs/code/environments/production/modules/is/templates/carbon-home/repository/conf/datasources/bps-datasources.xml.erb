@@ -1,0 +1,30 @@
+<datasources-configuration xmlns:svns="http://org.wso2.securevault/configuration">
+  
+   <providers>
+        <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
+    </providers>
+  
+  <datasources>      
+        <datasource>
+            <name><%= @datasource_bps_db_name %></name>
+            <description></description>
+            <jndiConfig>
+                <name><%= @datasource_bps_db_jndi %></name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= @datasource_identity_db_url %></url>
+                    <username><%= @datasource_identity_db_username %></username>
+                    <password><%= @datasource_identity_db_password %></password>
+                    <defaultAutoCommit><%= @datasource_common_postgres_default_auto_commit %></defaultAutoCommit>
+                    <driverClassName><%= @datasource_identity_db_driver %></driverClassName>
+                    <maxActive><%= @datasource_common_max_active %></maxActive>
+                    <maxWait><%= @datasource_common_max_wait %></maxWait>
+                    <testOnBorrow><%= @datasource_common_postgres_test_on_borrow %></testOnBorrow>
+                    <validationQuery><%= @datasource_identity_db_validation_query %></validationQuery>
+                    <validationInterval><%= @datasource_common_validation_interval %></validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+    </datasources>
+</datasources-configuration>
