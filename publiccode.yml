@@ -25,7 +25,7 @@ description:
   it:   
     shortDescription: >
          File Puppet per l'installazione e configurazione di una piattaforma per la gestione delle API (WSO2)
-    genericName: Ecosistema digitale - Piattforma gestione API (WSO2)      
+    genericName: Ecosistema digitale - APIM WSO2      
     longDescription: >
          L'Ecosistema Digitale dell'Umbria è una piattaforma che consente di esporre i servizi dei sistemi informativi regionali
          tramite API. 
