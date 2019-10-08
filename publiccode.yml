@@ -1,7 +1,7 @@
 publiccodeYmlVersion: "0.2"
 
 name: Ecosistema Digitale - API Management 
-url: "https://github.com/RegioneUmbria/SISO"
+url: "https://github.com/RegioneUmbria/ecosistema-puppet"
 softwareVersion: "1.0"
 releaseDate: "2019-10-01"
 logo: https://raw.githubusercontent.com/RegioneUmbria/ecosistema-puppet/master/images/ecosistema.png
