@@ -36,7 +36,7 @@ description:
          di replicare/adattare l'architettura proposta.         
     features:
        - Installazione e configurazione di WSO2 API Manager
-       - Installazione e configurazione di WSO2 Identiy Server
+       - Installazione e configurazione di WSO2 Identity Server
        - Possibilità di personalizzare l'achitettura utilizzando i file di configurazione 
        - Facilità di installazione
        - Architettura scalabile
