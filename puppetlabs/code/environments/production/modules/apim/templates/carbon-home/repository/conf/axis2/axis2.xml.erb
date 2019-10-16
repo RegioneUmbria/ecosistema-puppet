@@ -170,6 +170,8 @@
         <!--JSON Message Formatters-->
         <messageFormatter contentType="application/json"
                           class="org.apache.synapse.commons.json.JsonStreamFormatter"/>
+		<messageFormatter contentType="application/problem+json"
+                          class="org.apache.synapse.commons.json.JsonStreamFormatter"/>
         <!--messageFormatter contentType="application/json"
                           class="org.apache.synapse.commons.json.JsonFormatter"/-->
         <messageFormatter contentType="application/json/badgerfish"
@@ -235,6 +237,8 @@
 
         <!--JSON Message Builders-->
         <messageBuilder contentType="application/json"
+                        class="org.apache.synapse.commons.json.JsonStreamBuilder"/>
+		<messageBuilder contentType="application/problem+json"
                         class="org.apache.synapse.commons.json.JsonStreamBuilder"/>
         <!--messageBuilder contentType="application/json"
                         class="org.apache.synapse.commons.json.JsonBuilder"/-->
