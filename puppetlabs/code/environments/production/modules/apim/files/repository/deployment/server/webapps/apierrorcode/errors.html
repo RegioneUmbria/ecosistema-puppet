@@ -1,0 +1,216 @@
+<h3>API handlers error codes</h3>
+<p>The Error code is present in the <em>"type"</em> attribute of the problem JSON responses.</p>
+<p>Format: <code>https://apistore.regione.umbria.it/apierrorcode/errors.html#<em>ErrorCode</em></code></p>
+<div>
+<table role="grid" border="1" cellspacing="0"><colgroup><col /><col /><col /><col /></colgroup>
+<thead>
+<tr role="row">
+<th tabindex="0" role="columnheader" scope="col" data-column="0" aria-disabled="false" aria-sort="none" aria-label="Error code: No sort applied, activate to apply an ascending sort">
+<div>Error code</div>
+</th>
+<th tabindex="0" role="columnheader" scope="col" data-column="1" aria-disabled="false" aria-sort="none" aria-label="Error Message: No sort applied, activate to apply an ascending sort">
+<div>Error Message</div>
+</th>
+<th tabindex="0" role="columnheader" colspan="1" scope="col" data-column="2" aria-disabled="false" aria-sort="none" aria-label="Description: No sort applied, activate to apply an ascending sort">
+<div>Description</div>
+</th>
+<th tabindex="0" role="columnheader" colspan="1" scope="col" data-column="3" aria-disabled="false" aria-sort="none" aria-label="Example: No sort applied, activate to apply an ascending sort">
+<div>Example</div>
+</th>
+</tr>
+</thead>
+<tbody aria-live="polite" aria-relevant="all">
+<tr role="row">
+<td colspan="1"><code><a id="700700"></a>700700</code></td>
+<td colspan="1">API blocked</td>
+<td colspan="1">This API has been blocked temporarily. Please try again later or contact the system administrators.</td>
+<td colspan="1">Invoke an API which is in the&nbsp;BLOCKED&nbsp;lifecycle state</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900800"></a>900800</code></td>
+<td colspan="1">Message throttled out</td>
+<td colspan="1">
+<p>The maximum number of requests that can be made to the API within a designated time period is reached and the API is throttled for the user.</p>
+</td>
+<td colspan="1">Invoke an API exceeding the tier limit</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900801"></a>900801</code></td>
+<td colspan="1">Hard limit exceeded</td>
+<td colspan="1">Hard throttle limit has been reached</td>
+<td colspan="1">Invoke an API exceeding the hard throttle limit</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900802"></a>900802</code></td>
+<td colspan="1">Resource level throttle out</td>
+<td colspan="1">Message is throttled out because resource level has exceeded</td>
+<td colspan="1">Sending/Receiving messages beyond authorized resource level</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900803"></a>900803</code></td>
+<td colspan="1">Application level throttle out</td>
+<td colspan="1">Message is throttled out because application level is exceeded</td>
+<td colspan="1">
+<p>Sending/Receiving messages beyond authorized application level</p>
+</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900804"></a>900804</code></td>
+<td colspan="1">Subscription level throttled out</td>
+<td colspan="1">Message throttled out due to subscription level throttling limit reached.</td>
+<td colspan="1">Sending/Receiving messages beyond configured throttling limit of subscription level policy.</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900805"></a>900805</code></td>
+<td colspan="1">Message blocked</td>
+<td colspan="1">Accessing an API which is blocked on user, IP, application, or API Context.</td>
+<td colspan="1">An admin user can block API invocations in real time by user, IP, application, or API context. The API invocation meets the blocked condition.</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900806"></a>900806</code></td>
+<td colspan="1">Custom policy throttled out</td>
+<td colspan="1">Message throttled out due to exceeding the limit configured through the custom throttling policy rules.</td>
+<td colspan="1">The API invocations meet custom throttle policy rules, exceeding the limits of the configured custom policy.</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900807"></a>900807</code></td>
+<td colspan="1">Message throttled out</td>
+<td colspan="1">Messaged throttled out because of exceeding the burst control/rate limit (requests per second) in the subscription level policy.</td>
+<td colspan="1">Sending/Receiving messages exceeding the configured burst control/rate limit within second.</td>
+</tr>
+<tr role="row">
+<td><code><a id="900900"></a>900900</code></td>
+<td>
+<p>Unclassified authentication failure</p>
+</td>
+<td colspan="1">An unspecified error has occurred</td>
+<td colspan="1">Backend service for key validation is not accessible when trying to invoke an API</td>
+</tr>
+<tr role="row">
+<td><code><a id="900901"></a>900901</code></td>
+<td>
+<p>Invalid credentials</p>
+</td>
+<td colspan="1">
+<div>
+<p>Invalid authentication information provided.</p>
+<div data-hasbody="true" data-macro-name="note">
+<div>
+<p>The error codes&nbsp;900903&nbsp;(Access token expired) and&nbsp;900904&nbsp;(Access token inactive) are deprecated from API Manager 1.9.0 onwards. Alternatively, error code&nbsp;900901&nbsp;will be sent when the token is invalid or inactive.</p>
+</div>
+</div>
+</div>
+</td>
+<td colspan="1">When the access&nbsp;token is invalid or inactive.</td>
+</tr>
+<tr role="row">
+<td><code><a id="900902"></a>900902</code></td>
+<td>
+<p>Missing credentials</p>
+</td>
+<td colspan="1">No authentication information provided</td>
+<td colspan="1">Accessing an API without&nbsp;Authorization: Bearer&nbsp;header</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900905"></a>900905</code></td>
+<td colspan="1">
+<p>Incorrect access token type is provided</p>
+</td>
+<td colspan="1">
+<p>The access token type used is not supported when invoking the API. The supported access token types are application and user accesses tokens.</p>
+</td>
+<td colspan="1">Invoke an API with application token, where the resource only allows application user tokens</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900906"></a>900906</code></td>
+<td colspan="1">
+<p>No matching resource found in the API for the given request</p>
+</td>
+<td colspan="1">A resource with the name in the request can not be found in the API.</td>
+<td colspan="1">Invoke an API resource that is not available</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900907"></a>900907</code></td>
+<td colspan="1">
+<p>The requested API is temporarily blocked</p>
+</td>
+<td colspan="1">Happens when the API user is blocked.</td>
+<td colspan="1">Invoke API resource with a subscription that has been blocked by the API publisher</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900908"></a>900908</code></td>
+<td colspan="1">
+<p>Resource forbidden</p>
+</td>
+<td colspan="1">The user invoking the API has not been granted access to the required resource.</td>
+<td colspan="1">Invoke an unsubscribed API</td>
+</tr>
+<tr role="row">
+<td colspan="1"><code><a id="900909"></a>900909</code></td>
+<td class="confluenceTd" colspan="1">
+<p>The subscription to the API is inactive</p>
+</td>
+<td class="confluenceTd" colspan="1">The status of the API has changed to an inaccessible/unavailable state.</td>
+<td class="confluenceTd" colspan="1">Invoke an API resource with a subscription that has not yet been approved by the administrator.</td>
+</tr>
+<tr role="row">
+<td class="confluenceTd" colspan="1"><code><a id="900910"></a>900910</code></td>
+<td class="confluenceTd" colspan="1">
+<p>The access token does not allow you to access the requested resource</p>
+</td>
+<td class="confluenceTd" colspan="1">
+<p>Can not access the required resource with the provided access token. Check the valid resources that can be accessed with this token.</p>
+</td>
+<td class="confluenceTd" colspan="1">Invoke API resource with an access token that is not generated to be used with the resource's scope.</td>
+</tr>
+<tr role="row">
+<td class="confluenceTd" colspan="1"><code><a id="102511"></a>102511</code></td>
+<td class="confluenceTd" colspan="1">Incomplete payload</td>
+<td class="confluenceTd" colspan="1">The payload sent with the request is too large and the client is unable to keep the connection alive until the payload is completely transferred to the API Gateway</td>
+<td class="confluenceTd" colspan="1">Sending a large PDF file with the POST request</td>
+</tr>
+</tbody>
+</table>
+<h3>The HTTP Status Codes and the corresponding error codes from the error responses are given below.</h3>
+<div class="table-wrap">
+<table class="wrapped confluenceTable tablesorter tablesorter-default stickyTableHeaders" role="grid" border="1" cellspacing="0" cellpadding="1"><colgroup><col /><col /></colgroup>
+<thead>
+<tr role="row">
+<th tabindex="0" role="columnheader" scope="col" data-column="0" aria-disabled="false" aria-sort="ascending" aria-label="HTTP Status Code: Ascending sort applied, activate to apply a descending sort">
+<div>HTTP Status Code</div>
+</th>
+<th tabindex="0" role="columnheader" scope="col" data-column="1" aria-disabled="false" aria-sort="none" aria-label="Error Code: No sort applied, activate to apply an ascending sort">
+<div>Error Code</div>
+</th>
+</tr>
+</thead>
+<tbody aria-live="polite" aria-relevant="all">
+<tr role="row">
+<td colspan="1"><code>400</code></td>
+<td colspan="1"><code>102511</code></td>
+</tr>
+<tr role="row">
+<td><code>401</code></td>
+<td><code>900901, 900902, 900905, 900907, 900909</code></td>
+</tr>
+<tr role="row">
+<td><code>403</code></td>
+<td><code>900906, 900908, 900910</code></td>
+</tr>
+<tr role="row">
+<td><code>429</code></td>
+<td><code>900800, 900802, 900803, 900804, 900805, 900806, 900807</code></td>
+</tr>
+<tr role="row">
+<td colspan="1"><code>500</code></td>
+<td colspan="1"><code>900900</code></td>
+</tr>
+<tr role="row">
+<td colspan="1"><code>503</code></td>
+<td colspan="1"><code>700700, 900801</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Source: <a href="https://docs.wso2.com/display/AM260/Error+Handling">https://docs.wso2.com/display/AM260/Error+Handling</a></p>

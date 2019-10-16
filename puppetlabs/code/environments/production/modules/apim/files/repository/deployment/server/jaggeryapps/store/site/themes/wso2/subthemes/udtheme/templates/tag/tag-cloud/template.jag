@@ -1,0 +1,5 @@
+<% jagg.template("tag/tag-cloud", function(inputs, outputs, jagg) { %>
+
+
+
+<% }); %>

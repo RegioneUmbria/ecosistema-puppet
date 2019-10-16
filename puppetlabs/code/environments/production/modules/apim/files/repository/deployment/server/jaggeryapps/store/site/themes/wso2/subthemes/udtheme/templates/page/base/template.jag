@@ -1,0 +1,135 @@
+<% jagg.template("page/base", function(inputs, outputs, jagg) {
+  var i18n = require("i18n");
+  var localeResourcesBasePath="/site/conf/locales/jaggery/";
+  i18n.init(request,localeResourcesBasePath); 
+
+  var tenant=request_tenant;
+  var urlPrefix;
+  var fullUrl = null;
+  var site = require("/site/conf/site.json");
+  var currentURL = jagg.getAbsoluteUrl('/'); 
+  urlPrefix = jagg.getTenantURLPrefix();
+  fullUrl = request.getRequestURI();
+  if(request.getQueryString() != null){
+      fullUrl += '?'+request.getQueryString();
+  }     
+%>
+<!--
+~   Copyright (c) WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~   Licensed under the Apache License, Version 2.0 (the "License");
+~   you may not use this file except in compliance with the License.
+~   You may obtain a copy of the License at
+~
+~        http://www.apache.org/licenses/LICENSE-2.0
+~
+~   Unless required by applicable law or agreed to in writing, software
+~   distributed under the License is distributed on an "AS IS" BASIS,
+~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~   See the License for the specific language governing permissions and
+~   limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content=""/>
+
+    <title><%=outputs.title%></title>
+
+    <script>
+        var requestURL = '<%= currentURL%>';
+        var ssoEnabled = '<%=site.ssoConfiguration.enabled%>';
+        var oidcEnabled = '<%=site.oidcConfiguration.enabled%>';
+        var tenant = '<%=tenant%>';
+        var urlPrefix = '<%=urlPrefix%>';
+        var siteContext = '<%=jagg.getSiteContext()%>';
+    </script>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="<%=jagg.getAbsoluteUrl(jagg.getThemeFile("images/favicon-store.png"))%>">
+
+    <%
+    var data = jagg.data();
+    if(data.header) {
+        jagg.printData(data.header.css);      
+        jagg.printData(data.header.js);
+        jagg.printData(data.header.code);
+    }
+    %>
+    <script>
+        var siteRoot = '<%=jagg.getAbsoluteUrl("/site/themes/"+jagg.getUserTheme().base)%>';
+    </script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-78244431-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-78244431-5');
+	</script>
+	
+	<!-- Matomo -->
+	<script type="text/javascript">
+	  var _paq = window._paq || [];
+	  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+		var u="https://webanalytics.regione.umbria.it/";
+		_paq.push(['setTrackerUrl', u+'matomo.php']);
+		_paq.push(['setSiteId', '1']);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+	<!-- End Matomo Code -->
+
+	
+</head>
+<body class="sticky-footer">
+
+<% jagg.includeBlocks(outputs.body); %>
+
+<% jagg.includeBlock("ui/dialogs", {}); %>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="container-fluid">
+        <p class="footer-container">
+			<div class="img_footer" >
+				<a href="http://www.regione.umbria.it/agenda-digitale" target="_blank"><img src="<%=jagg.getAbsoluteUrl(jagg.getThemeFile("images/agenda.png"))%>" height="50px;"/></a>
+			</div>
+			<div class="img_footer" >
+				<a href="http://www.umbriadigitale.it" target="_blank"><img src="<%=jagg.getAbsoluteUrl(jagg.getThemeFile("images/ud.png"))%>" height="50px;"/></a>
+			</div>
+			<div class="img_footer" >
+				<img src="<%=jagg.getAbsoluteUrl(jagg.getThemeFile("images/fesr.png"))%>" height="50px;"/>
+			</div>
+			<div class="img_footer" >
+				<img src="<%=jagg.getAbsoluteUrl(jagg.getThemeFile("images/repubblica.png"))%>" height="50px;"/>
+			</div>
+			<div class="img_footer" >
+				<a href="http://www.regione.umbria.it" target="_blank"><img src="<%=jagg.getAbsoluteUrl(jagg.getThemeFile("images/umbria.png"))%>" height="50px;"/></a>
+			</div>
+			<div class="img_footer" >
+				<a href="http://www.regione.umbria.it/programmazione-fesr" target="_blank"><img src="<%=jagg.getAbsoluteUrl(jagg.getThemeFile("images/porumbria.png"))%>" height="50px;"/></a>
+			</div>
+		</p>
+      </div>
+    </footer>
+    
+<%
+if(data.footer) {
+    jagg.printData(data.footer.js);
+    jagg.printData(data.footer.css);
+    jagg.printData(data.footer.code);
+}
+%>
+</body>
+</html>
+<% }); %>

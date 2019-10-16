@@ -1,0 +1,6 @@
+<sequence name="_throttle_out_handler_" xmlns="http://ws.apache.org/ns/synapse">    
+    <property name="X-JWT-Assertion" scope="transport" action="remove"/>
+    <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtThrottleUsageHandler"/>
+    <sequence key="_throttle_out_handler_custom"/>
+    <drop/>
+</sequence>
