@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~  Copyright (c) 2005-2010, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+  ~
+  ~  WSO2 Inc. licenses this file to you under the Apache License,
+  ~  Version 2.0 (the "License"); you may not use this file except
+  ~  in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="_throttle_out_handler_custom">
+    <log level="custom">
+        <property name="STATUS" value="Executing throttle out 'fault' custom sequence"/>
+        <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
+        <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
+    </log>
+	
+	
+	<property name="HTTP_SC" value="500" scope="axis2"/>
+	<filter source="get-property('ERROR_CODE')" regex="^(900800|900802|900803|900804|900805|900806|900807)$">
+		<then>
+			<property name="HTTP_SC" value="429" scope="axis2"/>
+		</then>
+		<else>
+		</else>
+	</filter>
+	
+	<filter source="get-property('ERROR_CODE')" regex="900800">
+		<then>
+			<property name="ERROR_DESCRIPTION" value="You have exceeded your quota"/>
+		</then>
+		<else>
+		</else>
+	</filter>
+	<filter source="get-property('ERROR_CODE')" regex="900802">
+		<then>
+			<property name="ERROR_DESCRIPTION" value="Message is throttled out because resource level has exceeded"/>
+		</then>
+		<else>
+		</else>
+	</filter>
+	<filter source="get-property('ERROR_CODE')" regex="900803">
+		<then>
+			<property name="ERROR_DESCRIPTION" value="Message is throttled out because application level is exceeded"/>
+		</then>
+		<else>
+		</else>
+	</filter>
+	<filter source="get-property('ERROR_CODE')" regex="900804">
+		<then>
+			<property name="ERROR_DESCRIPTION" value="Message throttled out due to subscription level throttling limit reached"/>
+		</then>
+		<else>
+		</else>
+	</filter>
+	
+	<filter source="get-property('ERROR_CODE')" regex="900805">
+		<then>
+			<property name="ERROR_DESCRIPTION" value="Accessing an API which is blocked on user, IP, application, or API Context"/>
+		</then>
+		<else>
+		</else>
+	</filter>
+	
+	<filter source="get-property('ERROR_CODE')" regex="900806">
+		<then>
+			<property name="ERROR_DESCRIPTION" value="Message throttled out due to exceeding the limit configured through the custom throttling policy rules"/>
+		</then>
+		<else>
+		</else>
+	</filter>
+	<filter source="get-property('ERROR_CODE')" regex="900807">
+		<then>
+			<property name="ERROR_DESCRIPTION" value="Messaged throttled out because of exceeding the burst control/rate limit (requests per second) in the subscription level policy"/>
+		</then>
+		<else>
+		</else>
+	</filter>
+	
+    <filter source="get-property('MESSAGE_FORMAT')" regex="soap1[1-2]">
+        <then>
+            <property name="SOAP_FAULT_CODE" value="Server"/>
+            <makefault>
+                <code expression="$ctx:SOAP_FAULT_CODE"/>
+                <reason expression="$ctx:ERROR_MESSAGE"/>
+            </makefault>
+        </then>
+        <else>
+            <payloadFactory media-type="json">
+                <format>
+				{
+				"detail" : "$5",
+				"instance" : "$4",
+				"status" : $3,
+				"title" : "$2",
+				"type" : "<%= @apim_apistore_host %>/apierrorcode/errors.html#$1"
+				}
+                </format>
+                <args>
+					<arg expression="$ctx:ERROR_CODE"/>
+                    <arg expression="$ctx:ERROR_MESSAGE"/>
+					<arg expression="$axis2:HTTP_SC"/>
+					<arg expression="get-property('MessageID')"/>
+					<arg expression="$ctx:ERROR_DESCRIPTION"/>
+                </args>
+            </payloadFactory>
+        </else>
+    </filter>
+	
+
+    <property name="RESPONSE" value="true"/>
+    <header name="To" action="remove"/>
+    <property name="NO_ENTITY_BODY" scope="axis2" action="remove"/>
+    <!--<property name="ContentType" scope="axis2" action="remove"/>-->
+    <property name="Authorization" scope="transport" action="remove"/>
+    <property name="Host" scope="transport" action="remove"/>
+    <!--<property name="Accept" scope="transport" action="remove"/>-->
+    <property name="X-JWT-Assertion" scope="transport" action="remove"/>
+	
+	<!-- RESTITUISCO SOLO RISPOSTE JSON -->
+    <property name="messageType" value="application/problem+json" scope="axis2"/>
+    <property name="ContentType" value="application/problem+json" scope="axis2"/>
+	
+    <sequence key="_cors_request_handler_"/>
+    <send/>
+</sequence>

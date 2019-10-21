@@ -46,6 +46,11 @@ class apim::params {
       'repository/conf/consent-mgt-config.xml',
       'repository/conf/broker.xml',
       'repository/resources/security/sslprofiles.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_custom.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_throttle_out_handler_.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_throttle_out_handler_custom.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/fault.xml',
     ]
 	
     $remove_file_list = [
@@ -175,6 +180,11 @@ class apim::params {
         'repository/conf/consent-mgt-config.xml',
         'repository/conf/broker.xml',
         'repository/resources/security/sslprofiles.xml',
+		'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_.xml',
+		'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_custom.xml',
+		'repository/deployment/server/synapse-configs/default/sequences/_throttle_out_handler_.xml',
+		'repository/deployment/server/synapse-configs/default/sequences/_throttle_out_handler_custom.xml',
+		'repository/deployment/server/synapse-configs/default/sequences/fault.xml',
     ]
     $remove_file_list = [
         'repository/deployment/server/jaggeryapps',
@@ -334,6 +344,11 @@ class apim::params {
       'repository/conf/consent-mgt-config.xml',
       'repository/conf/broker.xml',
       'repository/resources/security/sslprofiles.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_custom.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_throttle_out_handler_.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_throttle_out_handler_custom.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/fault.xml',
     ]
 
     $sttm_username = '${admin.username}'
@@ -380,6 +395,11 @@ class apim::params {
       'repository/conf/consent-mgt-config.xml',
       'repository/conf/broker.xml',
       'repository/resources/security/sslprofiles.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_custom.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_throttle_out_handler_.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/_throttle_out_handler_custom.xml',
+	  'repository/deployment/server/synapse-configs/default/sequences/fault.xml',
     ]
 
     $hostname = 'api-pubstore.tuodominio.it'
