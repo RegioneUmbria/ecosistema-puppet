@@ -1,4 +1,4 @@
-# Cos' è l'Ecosistema Digitale della Regione Umbria?
+# Cos'è l'Ecosistema Digitale della Regione Umbria?
 L'Ecosistema digitale regionale è il sistema attraverso il quale la Regione Umbria espone le proprie API per favorire l'integrazione e lo scambio dei dati tra i sistemi. Per vedere le API attualmente disponibili vai allo [store](https://apistore.regione.umbria.it/store/) della Regione Umbria.
 
 # Come utilizzare questo repository

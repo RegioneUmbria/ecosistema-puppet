@@ -78,11 +78,13 @@ I parametri su cui intervenire riguardano:
 Ancora una volta, per quanto riguarda le URL deve essere sostituita la stringa `tuodomionio` con il dominio reale.
 
 # Personalizzazioni e componenti aggiuntivi
-I file puppet installano anche i seguenti componenti aggiuntivi:
+I file puppet installano anche i seguenti componenti aggiuntivi/personalizzazioni:
 
 - Tema personalizzato API store Regione Umbria
 - Script di compressione dei log dell'API Manager
 - Libreria custom per notifiche email in fase di sottoscrizione ad una API e generazione chiavi
+- Fault sequence custom adattate alle Linee Guida Modello di Interoperabilità
+- Error page custom
 
 ## Tema personalizzato API store Regione Umbria
 Il tema personalizzato per la Regione Umbria si chiama `udtheme` e si trova nella directory `puppetlabs/code/environments/production/modules/apim/files/repository/deployment/server/jaggeryapps/store/site/themes/wso2/subthemes`. Questo tema viene copiato automaticamente quando si lancia l'installazione di puppet. Per conoscere come si personalizzano i temi di WSO2 si faccia riferimento alla [guida ufficiale di WSO2](https://docs.wso2.com/display/AM260/Adding+a+New+API+Store+Theme).
@@ -102,7 +104,7 @@ A differenza di quanto descritto nella documentazione ufficiale di WSO2 la confi
 <WorkFlowExtensions>
 ...
 	<ProductionApplicationRegistration executor="it.umbriadigitale.ApplicationRegistrationWorkflowExecutor">
-		<Property name="serviceEndpoint">http://wso2ei-bps.umbriadigitale.it:9770/services/ApplicationRegistrationWorkFlowProcess/</Property>
+		<Property name="serviceEndpoint">http://wso2ei-bps.tuodominio.it:9770/services/ApplicationRegistrationWorkFlowProcess/</Property>
 		<Property name="username">admin</Property>
 		<Property name="password">changethispassword</Property>
 		<Property name="callbackURL">https://api-pubstore.tuodominio.it:8243/services/WorkflowCallbackService</Property>
@@ -137,6 +139,37 @@ A differenza di quanto descritto nella documentazione ufficiale di WSO2 la confi
 ```
 
 > **Nota**: Per utilizzare i workflow sopra citati è necessario installare WSO2 BP (componente di WSO2 EI). L'installazione di WSO2 BP non è inclusa nella guida, ma può essere facilmente eseguita seguendo la documentazione ufficiale di WSO2.
+
+## Fault sequence custom per adattarle alle Linee Guida Modello di Interoperabilità
+In coerenza a quanto riportato nel paragrafo [2.4.3. Uniformità e Naming](https://docs.italia.it/italia/piano-triennale-ict/lg-modellointeroperabilita-docs/it/bozza/doc/doc_02_cap_04.html#uniformita-e-naming) delle Linee Guida Modello di Interoperabilità del Team Digitale, in particolare seguendo lo schema [RFC 7807 - Problem Details for HTTP APIs - IETF Tools](https://tools.ietf.org/html/rfc7807), sono state modificate le seguenti fault sequence:
+- *fault.xml*	(This is the primary fault sequence that gets invoked when an error occurs during the execution of an API resources)
+- *_auth_failure_handler.xml*	(This sequence is called when an API authentication error is encountered)
+- *_throttle_out_handler.xml*	(This sequence is called when a given request to an API gets throttled out)
+
+Le sequence si trovano sotto la cartella `puppetlabs/code/environments/production/modules/apim/templates/carbon-home/repository/deployment/server/synapse-configs/default/sequences`.
+
+Di seguito un esempio di risposta a seguito di una invocazione di una API senza Access Token:
+```
+{
+	"detail": "Required OAuth credentials not provided. Make sure your API invocation call has a header: Authorization: Bearer ACCESS_TOKEN",
+	"instance": "urn:uuid:cb196a12-5763-4a66-9423-ee39357d8c3b",
+	"status": 401,
+	"title": "Missing Credentials",
+	"type": "https://apistore.tuodominio.it/apierrorcode/errors.html#900902"
+}
+```
+La pagina https://apistore.tuodominio.it/apierrorcode/errors.html#900902, presente nella cartella `puppetlabs/code/environments/production/modules/apim/files/repository/deployment/server/webapps/apierrorcode`, contiene il dettaglio dell'errore.
+
+Per maggiori informazioni sulla personalizzazione delle sequence consultare la sezione [Error Handling](https://docs.wso2.com/display/AM260/Error+Handling) della documentazione di WSO2.
+
+## Error page custom
+Sotto la cartella `puppetlabs/code/environments/production/modules/apim/files/repository/deployment/server/jaggeryapps/store/site/pages` si trovano le pagine di errore personalizzate:
+- 401.html
+- 403.html
+- 404.html
+- 500.html
+- error-page.html
+E' possibile modificarle applicando loghi e descrizioni personalizzate.
 
 # Servizi Linux
 Al termine dell'installazione, viene creato un servzio con cui avviare/fermare WSO2 API Manager (GW,TM,STTM):
