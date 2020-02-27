@@ -204,8 +204,8 @@ class apim::params {
     $is_key_manager = 'true'
     $policy_deployer_enabled = 'false'
 	
-	$jwt_generator_class= 'it.tuodominio.CustomTokenGenerator'
-	$enable_custom_application_attributes = 'false'
+	$jwt_generator_class= 'it.umbriadigitale.CustomTokenGenerator'
+	$enable_custom_application_attributes = 'true'
   }
  
   if $::nodename == "km01" {
@@ -316,7 +316,7 @@ class apim::params {
 	$lastaccess='lastaccesstime_1'
 	
 	$jwt_generator_class= 'org.wso2.carbon.apimgt.keymgt.token.JWTGenerator'
-	$enable_custom_application_attributes = 'true'
+	$enable_custom_application_attributes = 'false'
   }
   
   if $::nodename == "sttm01" {
