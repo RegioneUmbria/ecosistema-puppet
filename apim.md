@@ -84,7 +84,7 @@ I file puppet installano anche i seguenti componenti aggiuntivi/personalizzazion
 - Script di compressione dei log dell'API Manager
 - Libreria custom per notifiche email in fase di sottoscrizione ad una API e generazione chiavi
 - Fault sequence custom adattate alle Linee Guida Modello di Interoperabilità
-- Attributi custom alle applicazioni create nello store
+- Attributi custom delle applicazioni create nello store
 - Error page custom
 
 ## Tema personalizzato API store Regione Umbria
