@@ -84,71 +84,74 @@ class apim::params {
   
     #  Analytics
     $analytics_enable = 'true'
-    $stream_processor_url = '{tcp://api-an.tuodominio.it:7612}'
+    $stream_processor_url = '{tcp://api-an.umbriadigitale.it:7612}'
     $stream_processor_username = '${admin.username}'
     $stream_processor_password = '${admin.password}'
-    $stream_processor_restapi_url = 'https://FQDN_analytics_host:analytics_port'
+    $stream_processor_restapi_url = 'https://api-an.umbriadigitale.it:7444'
     $stream_processor_restapi_username = '${admin.username}'
     $stream_processor_restapi_password = '${admin.password}'
     
     $is_gateway = 'true'
+	
+	$jwt_generator_class= 'org.wso2.carbon.apimgt.keymgt.token.JWTGenerator'
+	$enable_custom_application_attributes = 'false'
   }
 
   if $::nodename == "extgw01" {
     # -------------------------------------------------------------------------------------------
     #                             EXT GW 1
     # -------------------------------------------------------------------------------------------
-    $hostname = 'api-extgw.tuodominio.it'
-    $mgt_hostname = 'wso2am-extgw-node1.tuodominio.it'
+    $hostname = 'api-extgw.umbriadigitale.it'
+    $mgt_hostname = 'wso2am-extgw-node1.umbriadigitale.it'
 	
     $service_profile = ''
 	
     $clustering_sub_domain = 'mgt'
-    $clustering_domain = 'api-extgw.tuodominio.it.domain'
-    $wka_member_host_1 = 'wso2am-extgw-node1.tuodominio.it'
-    $wka_member_host_2 = 'wso2am-extgw-node2.tuodominio.it'
+    $clustering_domain = 'api-extgw.umbriadigitale.it.domain'
+    $wka_member_host_1 = 'wso2am-extgw-node1.umbriadigitale.it'
+    $wka_member_host_2 = 'wso2am-extgw-node2.umbriadigitale.it'
 	
   } elsif $::nodename == "extgw02" {
     # -------------------------------------------------------------------------------------------
     #                             EXT GW 2
     # -------------------------------------------------------------------------------------------
-    $hostname = 'api-extgw.tuodominio.it'
-    $mgt_hostname = 'wso2am-extgw-node2.tuodominio.it'
+    $hostname = 'api-extgw.umbriadigitale.it'
+    $mgt_hostname = 'wso2am-extgw-node2.umbriadigitale.it'
 	
     $service_profile = '--optimize -Dprofile=gateway-worker -DworkerNode=true'
 	
     $clustering_sub_domain = 'worker'
-    $clustering_domain = 'api-extgw.tuodominio.it.domain'
-    $wka_member_host_1 = 'wso2am-extgw-node1.tuodominio.it'
-    $wka_member_host_2 = 'wso2am-extgw-node2.tuodominio.it'
+    $clustering_domain = 'api-extgw.umbriadigitale.it.domain'
+    $wka_member_host_1 = 'wso2am-extgw-node1.umbriadigitale.it'
+    $wka_member_host_2 = 'wso2am-extgw-node2.umbriadigitale.it'
 	
   } elsif $::nodename == "intgw01" {
     # -------------------------------------------------------------------------------------------
     #                             INT GW 1
     # -------------------------------------------------------------------------------------------
-    $hostname = 'api-intgw.tuodominio.it'
-    $mgt_hostname = 'wso2am-intgw-node1.tuodominio.it'
+    $hostname = 'api-intgw.umbriadigitale.it'
+    $mgt_hostname = 'wso2am-intgw-node1.umbriadigitale.it'
 	
     $service_profile = ''
 	
     $clustering_sub_domain = 'mgt'
-    $clustering_domain = 'api-intgw.tuodominio.it.domain'
-    $wka_member_host_1 = 'wso2am-intgw-node1.tuodominio.it'
-    $wka_member_host_2 = 'wso2am-intgw-node2.tuodominio.it'
+    $clustering_domain = 'api-intgw.umbriadigitale.it.domain'
+    $wka_member_host_1 = 'wso2am-intgw-node1.umbriadigitale.it'
+    $wka_member_host_2 = 'wso2am-intgw-node2.umbriadigitale.it'
     
   } elsif $::nodename == "intgw02" {
     # -------------------------------------------------------------------------------------------
     #                             INT GW 2
     # -------------------------------------------------------------------------------------------
-    $hostname = 'api-intgw.tuodominio.it'
-    $mgt_hostname = 'wso2am-intgw-node2.tuodominio.it'
+    $hostname = 'api-intgw.umbriadigitale.it'
+    $mgt_hostname = 'wso2am-intgw-node2.umbriadigitale.it'
 	
     $service_profile = '--optimize -Dprofile=gateway-worker -DworkerNode=true'
 	
     $clustering_sub_domain = 'worker'
-    $clustering_domain = 'api-intgw.tuodominio.it.domain'
-    $wka_member_host_1 = 'wso2am-intgw-node1.tuodominio.it'
-    $wka_member_host_2 = 'wso2am-intgw-node2.tuodominio.it'
+    $clustering_domain = 'api-intgw.umbriadigitale.it.domain'
+    $wka_member_host_1 = 'wso2am-intgw-node1.umbriadigitale.it'
+    $wka_member_host_2 = 'wso2am-intgw-node2.umbriadigitale.it'
 	
   }
   
@@ -200,31 +203,34 @@ class apim::params {
     $key_validator_client_type = 'WSClient'
     $is_key_manager = 'true'
     $policy_deployer_enabled = 'false'
+	
+	$jwt_generator_class= 'it.umbriadigitale.CustomTokenGenerator'
+	$enable_custom_application_attributes = 'false'
   }
  
   if $::nodename == "km01" {
     # -------------------------------------------------------------------------------------------
     #                             KM 1
     # -------------------------------------------------------------------------------------------
-    $hostname = 'api-km.tuodominio.it'
-    $mgt_hostname = 'wso2am-km-node1.tuodominio.it'
+    $hostname = 'api-km.umbriadigitale.it'
+    $mgt_hostname = 'wso2am-km-node1.umbriadigitale.it'
 	
     $clustering_sub_domain = 'mgt'
-    $clustering_domain = 'api-km.tuodominio.it.domain'
-    $wka_member_host_1 = 'wso2am-km-node1.tuodominio.it'
-    $wka_member_host_2 = 'wso2am-km-node2.tuodominio.it'
+    $clustering_domain = 'api-km.umbriadigitale.it.domain'
+    $wka_member_host_1 = 'wso2am-km-node1.umbriadigitale.it'
+    $wka_member_host_2 = 'wso2am-km-node2.umbriadigitale.it'
 	
   } elsif $::nodename == "km02" {
     # -------------------------------------------------------------------------------------------
     #                             KM 2
     # -------------------------------------------------------------------------------------------
-    $hostname = 'api-km.tuodominio.it'
-    $mgt_hostname = 'wso2am-km-node2.tuodominio.it'
+    $hostname = 'api-km.umbriadigitale.it'
+    $mgt_hostname = 'wso2am-km-node2.umbriadigitale.it'
 	
     $clustering_sub_domain = 'worker'
-    $clustering_domain = 'api-km.tuodominio.it.domain'
-    $wka_member_host_1 = 'wso2am-km-node1.tuodominio.it'
-    $wka_member_host_2 = 'wso2am-km-node2.tuodominio.it'
+    $clustering_domain = 'api-km.umbriadigitale.it.domain'
+    $wka_member_host_1 = 'wso2am-km-node1.umbriadigitale.it'
+    $wka_member_host_2 = 'wso2am-km-node2.umbriadigitale.it'
 	
   } 
   
@@ -256,19 +262,19 @@ class apim::params {
 	
     $api_gateway_ext_name = 'Gateway Esterno (pubblico)'
     $api_gateway_ext_description = 'Le API pubblicate su questo gateway verranno esposte su Internet'
-    $api_gateway_ext_url = 'https://wso2am-extgw-node1.tuodominio.it:9443/services/'
+    $api_gateway_ext_url = 'https://wso2am-extgw-node1.umbriadigitale.it:9443/services/'
     $api_gateway_ext_username = '${admin.username}'
     $api_gateway_ext_password = '${admin.password}'
-    $api_gateway_ext_endpoint = 'http://api.tuodominio.it:80,https://api.tuodominio.it:443'
-    $api_gateway_ext_ws_endpoint = 'ws://api.tuodominio.it:9099'
+    $api_gateway_ext_endpoint = 'http://api.regione.umbria.it:80,https://api.regione.umbria.it:443'
+    $api_gateway_ext_ws_endpoint = 'ws://api.regione.umbria.it:9099'
   
     $api_gateway_int_name = 'Gateway interno (privato)'
     $api_gateway_int_description = 'Le API pubblicate su questo gateway saranno visibili solo dai server del DCRU'
-    $api_gateway_int_url = 'https://wso2am-intgw-node1.tuodominio.it:9443/services/'
+    $api_gateway_int_url = 'https://wso2am-intgw-node1.umbriadigitale.it:9443/services/'
     $api_gateway_int_username = '${admin.username}'
     $api_gateway_int_password = '${admin.password}'
-    $api_gateway_int_endpoint = 'http://api-int.tuodominio.it:8280,https://api-int.regione.umbria.it:8243'
-    $api_gateway_int_ws_endpoint = 'ws://api-int.tuodominio.it:9099'
+    $api_gateway_int_endpoint = 'http://api-int.regione.umbria.it:8280,https://api-int.regione.umbria.it:8243'
+    $api_gateway_int_ws_endpoint = 'ws://api-int.regione.umbria.it:9099'
 	
     $api_revoke_url = "https://${apim_gateway_lan_api_endpoint_host}:${apim_gateway_lan_secure_api_token_revoke_endpoint_port}/revoke"
  
@@ -278,7 +284,7 @@ class apim::params {
 	
     $store_sso_enabled = 'true'
     $store_sso_issuer = 'API_STORE'
-    $store_sso_identity_provider_url = 'https://identity-apistore.tuodominio.it:443/samlsso'
+    $store_sso_identity_provider_url = 'https://identity-apistore.regione.umbria.it:443/samlsso'
     $store_sso_passive = 'true'
 	
     $store_topics_per_page = '15'
@@ -288,7 +294,7 @@ class apim::params {
     $store_reverse_proxy_host = "${apim_apistore_host}"
     $store_reverse_proxy_context = '/store'
 	
-    $bps_host = 'wso2ei-bps.tuodominio.it:9450'
+    $bps_host = 'wso2ei-bps.umbriadigitale.it:9450'
     $admin_workflow_server_url = "https://${bps_host}/services/"
 	
     $store_enabled_tutorial = 'false'
@@ -298,17 +304,19 @@ class apim::params {
     $enable_data_publisher = 'false'
     $is_traffic_manager = 'true'
 	
-	
     #  Analytics
     $analytics_enable = 'true'
-    $stream_processor_url = '{tcp://api-an.tuodominio.it:7612}'
+    $stream_processor_url = '{tcp://api-an.umbriadigitale.it:7612}'
     $stream_processor_username = '${admin.username}'
     $stream_processor_password = '${admin.password}'
-    $stream_processor_restapi_url = 'https://api-an.tuodominio.it:7444'
+    $stream_processor_restapi_url = 'https://api-an.umbriadigitale.it:7444'
     $stream_processor_restapi_username = '${admin.username}'
     $stream_processor_restapi_password = '${admin.password}'
 
 	$lastaccess='lastaccesstime_1'
+	
+	$jwt_generator_class= 'org.wso2.carbon.apimgt.keymgt.token.JWTGenerator'
+	$enable_custom_application_attributes = 'true'
   }
   
   if $::nodename == "sttm01" {
@@ -354,16 +362,16 @@ class apim::params {
     $sttm_username = '${admin.username}'
     $sttm_password = '${admin.password}'
     
-    $hostname = 'api-pubstore.tuodominio.it'
-    $mgt_hostname = 'wso2am-sttm-node1.tuodominio.it'
+    $hostname = 'api-pubstore.umbriadigitale.it'
+    $mgt_hostname = 'wso2am-sttm-node1.umbriadigitale.it'
 	
     $clustering_sub_domain = 'mgt'
-    $clustering_domain = 'api-pubstore.tuodominio.it.domain'
-    $wka_member_host_1 = 'wso2am-sttm-node1.tuodominio.it'
-    $wka_member_host_2 = 'wso2am-sttm-node2.tuodominio.it'
+    $clustering_domain = 'api-pubstore.umbriadigitale.it.domain'
+    $wka_member_host_1 = 'wso2am-sttm-node1.umbriadigitale.it'
+    $wka_member_host_2 = 'wso2am-sttm-node2.umbriadigitale.it'
     
-    $datasource_mb_store_db_url = 'jdbc:postgresql://wso2am-database.tuodominio.it:5432/api26_mbstoredb1'
-	$connection_factory_node_name = 'wso2am-sttm-node2.tuodominio.it'
+    $datasource_mb_store_db_url = 'jdbc:postgresql://wso2am-database.umbriadigitale.it:5432/api26_mbstoredb1'
+	$connection_factory_node_name = 'wso2am-sttm-node2.umbriadigitale.it'
 
   } elsif $::nodename == "sttm02" {
     # -------------------------------------------------------------------------------------------
@@ -402,16 +410,16 @@ class apim::params {
 	  'repository/deployment/server/synapse-configs/default/sequences/fault.xml',
     ]
 
-    $hostname = 'api-pubstore.tuodominio.it'
-    $mgt_hostname = 'wso2am-sttm-node2.tuodominio.it'
+    $hostname = 'api-pubstore.umbriadigitale.it'
+    $mgt_hostname = 'wso2am-sttm-node2.umbriadigitale.it'
 	
     $clustering_sub_domain = 'worker'
-    $clustering_domain = 'api-pubstore.tuodominio.it.domain'
-    $wka_member_host_1 = 'wso2am-sttm-node1.tuodominio.it'
-    $wka_member_host_2 = 'wso2am-sttm-node2.tuodominio.it'
+    $clustering_domain = 'api-pubstore.umbriadigitale.it.domain'
+    $wka_member_host_1 = 'wso2am-sttm-node1.umbriadigitale.it'
+    $wka_member_host_2 = 'wso2am-sttm-node2.umbriadigitale.it'
 	
-    $datasource_mb_store_db_url = 'jdbc:postgresql://wso2am-database.tuodominio.it:5432/api26_mbstoredb2'
-	$connection_factory_node_name = 'wso2am-sttm-node1.tuodominio.it'
+    $datasource_mb_store_db_url = 'jdbc:postgresql://wso2am-database.umbriadigitale.it:5432/api26_mbstoredb2'
+	$connection_factory_node_name = 'wso2am-sttm-node1.umbriadigitale.it'
   } 
 
 }
