@@ -163,15 +163,19 @@ La pagina https://apistore.tuodominio.it/apierrorcode/errors.html#900902, presen
 
 Per maggiori informazioni sulla personalizzazione delle sequence consultare la sezione [Error Handling](https://docs.wso2.com/display/AM260/Error+Handling) della documentazione di WSO2.
 
-## Attributi custom alle applicazioni create nello store
+## Attributi custom delle applicazioni create nello store
 Nella fase di creazione di un'applicazione nello store è possibile definire degli [attributi aggiuntivi custom da associare all'applicazione](https://docs.wso2.com/display/AM260/Add+Custom+Attributes+to+Applications) .
+
 *Abilitazione attributi custom*
+
 Di default sono stati abilitati gli attributi custom nella creazione di applicazioni tramite lo store, impostando la variabile `enable_custom_application_attributes` a `true` nella sezione relativa agli sttm01 e sttm02 del
 file `puppetlabs/code/environments/production/modules/apim/manifests/params.pp` .
 Questi attributi sono definiti nel file `puppetlabs/code/environments/production/modules/apim/templates/carbon-home/repository/conf/api-manager.xml.erb` nel tag `ApplicationConfiguration`.
 Per utilizzare tali attributi, e' necessario utilizzare anche un custom JWT Generator. A tale scopo verificare che nel file `puppetlabs/code/environments/production/modules/apim/manifests/params.pp` la variabile `$jwt_generator_class` sia impostata a `it.umbriadigitale.CustomTokenGenerator` solamente per i km01 e km02.
 L'utilizzo di un JWT Generator custom si rende necessario per ovviare ad un [bug di WSO2 APIM versione 2.6](https://github.com/wso2/product-apim/issues/4608) .
+
 *Disabilitazione attributi custom*
+
 Per disabilitare gli attributi custom delle applicazioni è necessario impostare a `false` la variabile `enable_custom_application_attributes` nel file `puppetlabs/code/environments/production/modules/apim/manifests/params.pp` solamente per la sezione relativa ai sttm01 e sttm02.
 Nel file `puppetlabs/code/environments/production/modules/apim/manifests/params.pp` impostare la variabile `$jwt_generator_class` a `org.wso2.carbon.apimgt.keymgt.token.JWTGenerator` per i km01 e km02.
 
