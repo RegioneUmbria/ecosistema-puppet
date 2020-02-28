@@ -173,6 +173,7 @@ file `puppetlabs/code/environments/production/modules/apim/manifests/params.pp` 
 Questi attributi sono definiti nel file `puppetlabs/code/environments/production/modules/apim/templates/carbon-home/repository/conf/api-manager.xml.erb` nel tag `ApplicationConfiguration`.
 Per utilizzare tali attributi, e' necessario utilizzare anche un custom JWT Generator. A tale scopo verificare che nel file `puppetlabs/code/environments/production/modules/apim/manifests/params.pp` la variabile `$jwt_generator_class` sia impostata a `it.umbriadigitale.CustomTokenGenerator` solamente per i km01 e km02.
 L'utilizzo di un JWT Generator custom si rende necessario per ovviare ad un [bug di WSO2 APIM versione 2.6](https://github.com/wso2/product-apim/issues/4608) .
+*Il custom JWT Generator implementato non include gli attributi custom dell'applicazione nel JWT.*
 
 *Disabilitazione attributi custom*
 
