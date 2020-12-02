@@ -96,6 +96,9 @@
 					<arg expression="$ctx:ERROR_DESCRIPTION"/>
                 </args>
             </payloadFactory>
+            <!-- RESTITUISCO SOLO RISPOSTE JSON -->
+            <property name="messageType" value="application/problem+json" scope="axis2"/>
+            <property name="ContentType" value="application/problem+json" scope="axis2"/>
         </else>
     </filter>
 	
@@ -108,10 +111,6 @@
     <property name="Host" scope="transport" action="remove"/>
     <!--<property name="Accept" scope="transport" action="remove"/>-->
     <property name="X-JWT-Assertion" scope="transport" action="remove"/>
-	
-	<!-- RESTITUISCO SOLO RISPOSTE JSON -->
-    <property name="messageType" value="application/problem+json" scope="axis2"/>
-    <property name="ContentType" value="application/problem+json" scope="axis2"/>
 	
     <sequence key="_cors_request_handler_"/>
     <send/>
